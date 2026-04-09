@@ -1,0 +1,60 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - path: src/prepare.py
+      hash: md5
+      md5: 048f9f0cf19cb063cd61d4adbb88ac7f
+      size: 1221
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: ceaf974fa3e59534e76b0c7860994463.dir
+      size: 220083362
+      nfiles: 2
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: ceaf974fa3e59534e76b0c7860994463.dir
+      size: 220083362
+      nfiles: 2
+    - path: src/train.py
+      hash: md5
+      md5: 808f62da7f7ff29326ab8e5dbbe2e0dd
+      size: 2049
+    params:
+      params.yaml:
+        epochs: 5
+        lr: 0.001
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: ada97714bac7f0b76f798745b09ac560
+      size: 28
+    - path: model.pt
+      hash: md5
+      md5: be37cdb2f97d646c3d88f88ab9749f18
+      size: 56713
+  predict:
+    cmd: python src/predict.py
+    deps:
+    - path: data/processed/test.pt
+      hash: md5
+      md5: 0c88d311c92414204c9425d74e447890
+      size: 31441677
+    - path: model.pt
+      hash: md5
+      md5: be59752c31f912d9140d4733ed91be61
+      size: 56713
+    - path: src/predict.py
+      hash: md5
+      md5: b7baa3b4df9a30a2d7d4cbbb0e9f5691
+      size: 1112
+    outs:
+    - path: predictions.json
+      hash: md5
+      md5: 1cc5c8fa3518fd70490e2a8ebb2062e9
+      size: 923

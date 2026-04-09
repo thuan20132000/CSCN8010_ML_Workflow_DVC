@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+.venv/
+
+# DVC outputs
+/model.pt
+/metrics.json
+/predictions.json
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
