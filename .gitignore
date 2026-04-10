@@ -19,3 +19,7 @@ venv/
 
 # OS
 .DS_Store
+
+# Environment variables
+.env
+client_secret_609777283610-2l3h3g09d6eegapcb5ds357k72mniqb9.apps.googleusercontent.com.json
